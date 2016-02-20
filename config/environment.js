@@ -5,6 +5,7 @@ module.exports = function(environment) {
     modulePrefix: 'ember-legit-forms-docs',
     environment: environment,
     baseURL: '/',
+    podModulePrefix: 'ember-legit-forms-docs/pods',
     locationType: 'auto',
     EmberENV: {
       FEATURES: {

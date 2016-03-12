@@ -1,0 +1,25 @@
+<h1 class="docs__title">Validators Reference</h1>
+
+<div class="row">
+  <div class="col-md-6">
+    <ul>
+      {{#each validatorsCol1 as |validator|}}
+        {{#link-to "docs.validators-reference.show" validator.name tagName="li"}}
+          <a href="#">{{validator.name}}</a>
+        {{/link-to}}
+      {{/each}}
+    </ul>
+  </div>
+
+  <div class="col-md-6">
+    <ul>
+      {{#each validatorsCol2 as |validator|}}
+        {{#link-to "docs.validators-reference.show" validator.name tagName="li"}}
+          <a href="#">{{validator.name}}</a>
+        {{/link-to}}
+      {{/each}}
+    </ul>
+  </div>
+</div>
+
+{{outlet}}

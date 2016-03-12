@@ -1,0 +1,42 @@
+<h1 class="docs__title">Components Reference</h1>
+
+<p>
+  Some components are provided by default to make development convenient.
+  They are all based on Twitter Bootstrap (can be {{link-to "customized" "docs.customizing-wrapper-markup"}}) and handle showing validation state and error messages by default.
+</p>
+
+{{#docs-note title="Note"}}
+  Every one of those components requires <code>name</code> attribute that corresponds to the key in the <code>rules</code> hash provided
+  for the <code>lf-form</code> component (see {{link-to "Getting started section" "docs.getting-started"}}).
+  If you do not provide this attribute your input will be always marked as valid.
+{{/docs-note}}
+
+{{#docs-note title="Warning:" type="warning"}}
+  All components use one-way data-binding by default - you have to provide on-update action if you want to mutate the property!
+{{/docs-note}}
+
+<h2>Shared Attributes</h2>
+
+<p>At it's core every component accepts following attributes:</p>
+
+<ul>
+<li><code>label</code>: (optional) when provided, displays a label for the input</li>
+<li><code>property</code>: property that will be used to fill the input field</li>
+<li><code>name</code>: a key in the rules hash provided to lf-form. Used to find the validator for the field.</li>
+<li><code>validate</code>: validation function that can be obtained from the wrapping lf-form component. This function takes care of the actual determining if field is valid or not.</li>
+<li><code>on-update</code>: closure action that is called every time the value changes. Can be used e.g. for mutating the property.</li>
+</ul>
+
+<p>
+  In the description of the components those attributes are going to be omitted to avoid unnecessary duplication (they will however be provided in the examples for clarity)
+</p>
+
+<ul class="docs__switcher">
+{{#each components as |component|}}
+  {{#link-to (concat-string "docs.components-reference." component separator="") tagName="li"}}
+    <a href="#">{{concat-string "" component}}</a>
+  {{/link-to}}
+{{/each}}
+</ul>
+
+{{outlet}}

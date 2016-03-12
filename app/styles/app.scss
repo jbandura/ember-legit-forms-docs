@@ -1,5 +1,7 @@
+/*@import 'highlightjs/solarized-dark';*/
 @import 'settings/z-index-variables';
 @import 'settings/variables';
+@import 'utilities/typography';
 @import 'framework/variables';
 
 @import 'framework/components';
@@ -9,6 +11,16 @@
 @import 'utilities/functions';
 @import 'utilities/mixins';
 @import 'utilities/shared';
-@import 'utilities/typography';
 
 @import 'framework/overrides';
+@import 'components/page-navigation';
+@import 'components/code-terminal';
+@import 'components/page-footer';
+@import 'components/docs-navigation';
+@import 'components/code-preview';
+@import 'components/docs-note';
+@import 'components/code-sample';
+
+@import 'views/main';
+@import 'views/docs';
+

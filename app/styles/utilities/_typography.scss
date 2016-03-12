@@ -1,0 +1,12 @@
+*,
+*:after,
+*:before {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+}
+
+@import url(https://fonts.googleapis.com/css?family=Inconsolata:400,700);
+
+
+$ff-sans-serif: "fira-sans", sans-serif;
+$ff-code: 'Inconsolata', monospace;

@@ -1,0 +1,12 @@
+{{#lf-form rules=rules as |validateFunction|}}
+  {{lf-select
+    label="Select field"
+    property=foo
+    name="foo"
+    content=fields
+    labelPath="label"
+    valuePath="value"
+    validate=validateFunction
+    on-update=(action (mut foo))
+  }}
+{{/lf-form}}

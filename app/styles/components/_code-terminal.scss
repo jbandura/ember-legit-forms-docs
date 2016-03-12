@@ -1,0 +1,52 @@
+.c-code-terminal {
+  position: relative;
+  z-index: $z-index-2;
+
+  &--fixed-width {
+    margin: 0 auto;
+    width: 461px;
+  }
+
+  &__nav {
+    padding: 12px 15px 6px;
+    background-color: $light-gray-color;
+    border-radius: 5px 5px 0 0;
+  }
+
+  &__controls {
+    @include sizing(10px);
+    margin: 3px;
+    display: inline-block;
+    border-radius: 10px;
+
+    &--close {
+      background-color: $red-color;
+    }
+
+    &--minimize {
+      background-color: $orange-color;
+    }
+
+    &--maximize {
+      background-color: $green-color;
+    }
+  }
+
+  &__content {
+    padding: 12px;
+    font-size: $fs-code;
+    font-family: $ff-code;
+    background-color: $terminal-bg-color;
+    color: $terminal-fg-color;
+    border-radius: 0 0 5px 5px;
+  }
+
+  &__muted {
+    color: darken($terminal-fg-color, 10%);
+  }
+
+  &__shell-command {
+    padding: 50px 12px;
+    font-size: $fs-5;
+  }
+}

@@ -18,7 +18,7 @@
 // $gray-light:             lighten(#000, 46.7%) !default; // #777
 // $gray-lighter:           lighten(#000, 93.5%) !default; // #eee
 
-// $brand-primary:         #428bca !default;
+$brand-primary:            $eden-color;
 // $brand-success:         #5cb85c !default;
 // $brand-info:            #5bc0de !default;
 // $brand-warning:         #f0ad4e !default;
@@ -44,7 +44,7 @@
 //
 //## Font, line-height, and color for body text, headings, and more.
 
-// $font-family-sans-serif:  "Helvetica Neue", Helvetica, Arial, sans-serif !default;
+$font-family-sans-serif:     $ff-sans-serif;
 // $font-family-serif:       Georgia, "Times New Roman", Times, serif !default;
 //** Default monospace fonts for `<code>`, `<kbd>`, and `<pre>`.
 // $font-family-monospace:   Menlo, Monaco, Consolas, "Courier New", monospace !default;
@@ -814,8 +814,8 @@
 //
 //##
 
-// $code-color:                  #c7254e !default;
-// $code-bg:                     #f9f2f4 !default;
+$code-color:                  $eden-color;
+$code-bg:                     lighten($eden-color, 68%);
 
 // $kbd-color:                   #fff !default;
 // $kbd-bg:                      #333 !default;

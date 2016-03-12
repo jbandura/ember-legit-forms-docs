@@ -1,0 +1,7 @@
+<ul class="c-code-preview__triggers">
+{{#each triggerOptions as |opt|}}
+  <li class="{{if (eq opt selectedTab) 'active'}}"><a href="#" {{action "tabSelected" opt}}>{{opt}}</a></li>
+{{/each}}
+</ul>
+
+{{yield selectedTab}}

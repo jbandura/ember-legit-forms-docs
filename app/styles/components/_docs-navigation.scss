@@ -1,0 +1,32 @@
+.c-docs-navigation {
+  padding-left: 0;
+  list-style-type: none;
+
+  li {
+    margin: 10px 0;
+    padding: 10px;
+    text-align: right;
+    font-size: $fs-3;
+    border-bottom: 1px solid darken($light-gray-2-color, 10%);
+
+    &:last-of-type {
+      border: 0;
+    }
+
+    &.active {
+      font-weight: $fw-bold;
+    }
+
+    ul {
+      list-style-type: none;
+
+      li {
+        margin: 0 0 10px;
+        padding-right: 0;
+        font-size: $fs-2;
+        border-bottom: 0;
+      }
+    }
+  }
+
+}

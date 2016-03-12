@@ -1,0 +1,31 @@
+$namespace: 'c-docs-note';
+
+.#{$namespace} {
+  margin: 20px 0;
+
+  &__heading {
+    padding: 10px;
+    color: $eden-color;
+    font-weight: $fw-bold;
+    text-align: center;
+    background-color: lighten($eden-color, 60%);
+  }
+
+  &__content {
+    padding: 10px 15px;
+    color: $eden-color;
+    background-color: lighten($eden-color, 75%);
+  }
+
+  &--warning {
+    .#{$namespace}__heading {
+      color: darken($red-color, 40%);
+      background-color: lighten($red-color, 20%);
+    }
+
+    .#{$namespace}__content {
+      color: darken($red-color, 40%);
+      background-color: lighten($red-color, 29%);
+    }
+  }
+}

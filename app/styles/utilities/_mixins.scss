@@ -33,3 +33,11 @@
   @include sizing($args);
   border-radius: 50%;
 }
+
+@mixin text($font-size, $font-weight, $color) {
+  font-size: $font-size;
+  font-weight: $font-weight;
+  color: $color;
+  line-height: $font-size * 1.5;
+}
+

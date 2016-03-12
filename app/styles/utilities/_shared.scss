@@ -1,0 +1,23 @@
+$margin-size: 10px;
+$margins: ('half', $margin-size / 2), ('double', $margin-size * 2), ('triple', $margin-size * 3);
+$directions: 'top', 'bottom', 'left', 'right';
+
+.push {
+  margin: $margin-size;
+}
+
+@each $margin in $margins {
+
+  @each $dir in $directions {
+    $name: nth($margin, 1);
+    $val: nth($margin, 2);
+
+    .push--#{$dir} {
+      margin-#{$dir}: $margin-size;
+    }
+
+    .push--#{$dir}--#{$name} {
+      margin-#{$dir}: $val;
+    }
+  }
+}

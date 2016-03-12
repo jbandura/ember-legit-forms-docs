@@ -1,0 +1,14 @@
+<div class="c-code-terminal {{if fixedWidth "c-code-terminal--fixed-width"}}">
+  <div class="c-code-terminal__nav">
+    <span class="c-code-terminal__controls c-code-terminal__controls--close"></span>
+    <span class="c-code-terminal__controls c-code-terminal__controls--minimize"></span>
+    <span class="c-code-terminal__controls c-code-terminal__controls--maximize"></span>
+  </div>
+  {{#if codeBlock}}
+    {{yield}}
+  {{else}}
+    <div class="c-code-terminal__content">
+      {{yield}}
+    </div>
+  {{/if}}
+</div>

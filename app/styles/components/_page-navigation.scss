@@ -1,0 +1,10 @@
+.c-page-nav {
+  padding: 20px;
+  color: $white-color;
+  background-color: $eden-color;
+  border-top: 4px solid lighten($eden-color, 10%);
+
+  &__nav {
+    line-height: 35px;
+  }
+}

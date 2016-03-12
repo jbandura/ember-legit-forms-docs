@@ -1,0 +1,46 @@
+.c-code-preview {
+  &__triggers {
+    padding-left: 0;
+    margin-bottom: 20px;
+    list-style-type: none;
+    text-align: center;
+
+    &:after {
+      @include sizing(100% 1px);
+      content: '';
+      display: block;
+      margin-top: -12px;
+      background-color: $triggers-color;
+    }
+
+    li {
+      margin-right: -5px;
+      display: inline-block;
+
+      a {
+        padding: 2px 10px;
+        background-color: $white-color;
+        color: $triggers-color;
+        font-size: $fs-2;
+        border: 1px solid $triggers-color;
+      }
+
+      &.active a,
+      a:hover {
+        text-decoration: none;
+        background-color: $triggers-color;
+        color: $white-color;
+      }
+
+      &:first-of-type a {
+        border-radius: 5px 0 0 5px;
+        border-right: 0;
+      }
+
+      &:last-of-type a {
+        border-radius: 0 5px 5px 0;
+        border-left: 0;
+      }
+    }
+  }
+}

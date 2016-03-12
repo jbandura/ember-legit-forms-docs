@@ -1,0 +1,29 @@
+<nav class="c-page-nav">
+  <div class="container">
+
+    <div class="row">
+      <div class="col-xs-3">
+        <img src="images/ember-legit-forms-logo.svg" width="80" />
+      </div>
+      <div class="col-xs-9 text-right">
+        <ul class="nav nav-pills pull-right c-page-nav__nav">
+          {{#link-to "index" tagName="li"}}
+            <a href="#">Home</a>
+          {{/link-to}}
+          {{#link-to "docs.installing" tagName="li"}}
+            <a href="#">Docs</a>
+          {{/link-to}}
+          {{!--
+          {{#link-to "examples" tagName="li"}}
+            <a href="#">Examples</a>
+          {{/link-to}}
+          --}}
+          <li role="presentation">
+            <a href="http://github.com/jbandura/ember-legit-forms" target="_blank">Github</a>
+          </li>
+        </ul>
+      </div>
+    </div><!-- /.row -->
+
+  </div> <!-- /.container -->
+</nav>

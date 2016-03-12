@@ -1,0 +1,29 @@
+.main {
+
+  &__hero-text {
+    @include text($fs-jumbo, $fw-light, $eden-color);
+    margin: 100px 0;
+    text-align: center;
+
+    b {
+      font-weight: $fw-normal;
+    }
+  }
+
+  &__about {
+    position: relative;
+    z-index: $z-index-1;
+    margin-top: -70px;
+    padding-top: 130px;
+    color: $eden-color;
+    background-color: $light-gray-2-color;
+
+    &__heading {
+      @include text($fs-8, $fw-normal, $eden-color);
+    }
+
+    &__content {
+      @include text($fs-4, $fw-light, $eden-color);
+    }
+  }
+}

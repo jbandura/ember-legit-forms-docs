@@ -1,0 +1,16 @@
+<ul class="pager">
+  {{#if prevRoute}}
+    <li>
+      {{#link-to (concat-string (concat-string navigationPrefix ".") prevRoute)}}
+        <b>Previous: </b> {{titleize-dashes prevRoute}}
+      {{/link-to}}
+    </li>
+  {{/if}}
+  {{#if nextRoute}}
+    <li>
+      {{#link-to  (concat-string (concat-string navigationPrefix ".") nextRoute)}}
+        <b>Next:</b> {{titleize-dashes nextRoute}}
+      {{/link-to}}
+    </li>
+  {{/if}}
+</ul>

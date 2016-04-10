@@ -32,6 +32,8 @@ Router.map(function() {
     this.route('validators-reference', function() {
       this.route('show', { path: ':validator_name' });
     });
+
+    this.route('credits');
   });
 
   this.route('examples');

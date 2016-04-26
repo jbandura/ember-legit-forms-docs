@@ -41,6 +41,8 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
+    ENV.locationType = 'hash';
+    ENV.baseURL = '/ember-legit-forms-docs/';
     ENV['ember-cli-mirage'] = {
       enabled: true
     };

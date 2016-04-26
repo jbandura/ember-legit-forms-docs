@@ -1,4 +1,5 @@
 export default function() {
+   this.namespace = '';    // make this `api`, for example, if your API is namespaced
 
   this.get('/validators', function(db, request) {
     const nameParam = request.queryParams.name;

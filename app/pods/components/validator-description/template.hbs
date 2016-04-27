@@ -1,0 +1,11 @@
+<h2>{{name}}</h2>
+<p><b>locales key</b>: <code>{{concat-string "" localesKey}}</code></p>
+<p><b>default message</b>: <code>{{concat-string "" defaultMessage}}</code></p>
+
+<p>
+  {{#if hasBlock}}
+    {{yield}}
+  {{else}}
+    {{{description}}}
+  {{/if}}
+</p>

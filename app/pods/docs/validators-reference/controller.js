@@ -1,12 +1,17 @@
 import Ember from 'ember';
 
-const { Controller, computed } = Ember;
+const {
+  Controller,
+  computed,
+  inject: { service }
+} = Ember;
 
 export default Controller.extend({
-  validatorsCol1: computed('model', function() {
-    return this.get('model').slice(0, 9);
+  listingService: service(),
+  validatorsCol1: computed('listingService.validators', function() {
+    return this.get('listingService.validators').slice(0, 8);
   }),
-  validatorsCol2: computed('model', function() {
-    return this.get('model').slice(9);
+  validatorsCol2: computed('listingService.validators', function() {
+    return this.get('listingService.validators').slice(8);
   }),
 });

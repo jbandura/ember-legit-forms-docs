@@ -1,0 +1,13 @@
+{{#validator-description
+  name="same"
+  localesKey="mustBeSame"
+  defaultMessage="must match {{fieldName}}"
+}}
+Checks if field value is equal to value of <code>fieldName</code>.
+{{/validator-description}}
+
+<h3>Usage:</h3>
+{{#code-sample lang="js"}}
+password: 'required|min(8)',
+passwordConfirmation: 'same(password)'
+{{/code-sample}}

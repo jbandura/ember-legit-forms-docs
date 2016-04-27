@@ -1,0 +1,13 @@
+{{#validator-description
+  name="different"
+  localesKey="mustBeDifferent"
+  defaultMessage="must be different than {{fieldName}}"
+}}
+Checks if field value is different than value of fieldName.
+{{/validator-description}}
+
+<h3>Usage:</h3>
+{{#code-sample lang="js"}}
+registeredAddress: 'required',
+corespondenceAddress: 'different(registeredAddress)'
+{{/code-sample}}

@@ -2,6 +2,8 @@ import Ember from 'ember';
 import config from './config/environment';
 import ListService from 'ember-legit-forms-docs/services/listing-service';
 
+const { String: { dasherize } } = Ember;
+
 const Router = Ember.Router.extend({
   location: config.locationType,
 });
@@ -31,7 +33,9 @@ Router.map(function() {
     });
 
     this.route('validators-reference', function() {
-      this.route('show', { path: ':validator_name' });
+      listService.get('validators').forEach((validator) => {
+        this.route(dasherize(validator));
+      });
     });
 
     this.route('credits');

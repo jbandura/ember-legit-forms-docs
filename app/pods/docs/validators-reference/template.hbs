@@ -4,8 +4,8 @@
   <div class="col-md-6">
     <ul>
       {{#each validatorsCol1 as |validator|}}
-        {{#link-to "docs.validators-reference.show" validator.name tagName="li"}}
-          <a href="#">{{validator.name}}</a>
+        {{#link-to (concat "docs.validators-reference." (dasherize validator)) tagName="li"}}
+          <a href="#">{{validator}}</a>
         {{/link-to}}
       {{/each}}
     </ul>
@@ -14,8 +14,8 @@
   <div class="col-md-6">
     <ul>
       {{#each validatorsCol2 as |validator|}}
-        {{#link-to "docs.validators-reference.show" validator.name tagName="li"}}
-          <a href="#">{{validator.name}}</a>
+        {{#link-to (concat "docs.validators-reference." (dasherize validator)) tagName="li"}}
+          <a href="#">{{validator}}</a>
         {{/link-to}}
       {{/each}}
     </ul>

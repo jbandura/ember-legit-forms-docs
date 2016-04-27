@@ -1,7 +1,14 @@
 import Ember from 'ember';
 
-const { Service } = Ember;
+const {
+  Service,
+  String: { w }
+} = Ember;
 
 export default Service.extend({
-  components: ['lf-form', 'lf-input', 'lf-textarea', 'lf-select']
+  components: ['lf-form', 'lf-input', 'lf-textarea', 'lf-select'],
+  validators: w(
+    `required accepted alpha alphanumeric numeric in notIn between max min size
+    regex same different url email`
+  )
 });

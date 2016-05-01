@@ -1,42 +1,58 @@
-<ol class="c-docs-navigation">
-  {{#link-to "docs.installing" tagName="li"}}
-    <a href="#">Installing</a>
-  {{/link-to}}
-  {{#link-to "docs.getting-started" tagName="li"}}
-    <a href="#">Getting started</a>
-  {{/link-to}}
-  {{#link-to "docs.components-reference" tagName="li"}}
-    <a href="#">Components Reference</a>
-  {{/link-to}}
-  {{#link-to "docs.customizing-wrapper-markup" tagName="li"}}
-    <a href="#">Customizing Wrapper Markup</a>
-  {{/link-to}}
-  {{#link-to "docs.validators" tagName="li"}}
-    <a href="#">Validators</a>
-  {{/link-to}}
-  <li>
-    <ul>
-      {{#link-to "docs.validators.representing-validators" tagName="li"}}
-        <a href="#">Representing Validators</a>
-      {{/link-to}}
-      {{#link-to "docs.validators.messages" tagName="li"}}
-        <a href="#">Messages</a>
-      {{/link-to}}
-      {{#link-to "docs.validators.shared-validations" tagName="li"}}
-        <a href="#">Shared Validations</a>
-      {{/link-to}}
-      {{#link-to "docs.validators.creating-custom-validators" tagName="li"}}
-        <a href="#">Creating Custom Validators</a>
-      {{/link-to}}
-      {{#link-to "docs.validators.defining-inline-validators" tagName="li"}}
-        <a href="#">Defining Inline Validators</a>
-      {{/link-to}}
-    </ul>
-  </li>
-  {{#link-to "docs.validators-reference" tagName="li"}}
-    <a href="#">Validators Reference</a>
-  {{/link-to}}
-  {{#link-to "docs.credits" tagName="li"}}
-    <a href="#">Credits</a>
-  {{/link-to}}
-</ol>
+<div
+  class="c-docs-navigation__mobile-container {{if mobileTrigger.mobileNavExpanded null 'visible-md visible-lg'}}"
+>
+  <h3 class="c-docs-navigation__title">General</h3>
+  <ol class="c-docs-navigation">
+    {{#link-to "docs.installing" tagName="li"}}
+      <a href="#">Installing</a>
+    {{/link-to}}
+    {{#link-to "docs.getting-started" tagName="li"}}
+      <a href="#">Getting started</a>
+    {{/link-to}}
+    {{#link-to "docs.components-reference" tagName="li"}}
+      <a href="#">Components Reference</a>
+    {{/link-to}}
+    {{#link-to "docs.customizing-wrapper-markup" tagName="li"}}
+      <a href="#">Customizing Wrapper Markup</a>
+    {{/link-to}}
+    {{#link-to "docs.credits" tagName="li"}}
+      <a href="#">Credits</a>
+    {{/link-to}}
+  </ol>
+
+  <h3 class="c-docs-navigation__title">Validators</h3>
+
+  <ol class="c-docs-navigation">
+    {{#link-to "docs.validators.representing-validators" tagName="li"}}
+      <a href="#">Representing Validators</a>
+    {{/link-to}}
+    {{#link-to "docs.validators.messages" tagName="li"}}
+      <a href="#">Messages</a>
+    {{/link-to}}
+    {{#link-to "docs.validators.shared-validations" tagName="li"}}
+      <a href="#">Shared Validations</a>
+    {{/link-to}}
+    {{#link-to "docs.validators.creating-custom-validators" tagName="li"}}
+      <a href="#">Creating Custom Validators</a>
+    {{/link-to}}
+    {{#link-to "docs.validators.defining-inline-validators" tagName="li"}}
+      <a href="#">Defining Inline Validators</a>
+    {{/link-to}}
+    {{#link-to "docs.validators-reference" tagName="li"}}
+      <a href="#">Validators Reference</a>
+    {{/link-to}}
+  </ol>
+</div>
+<div class="c-docs-navigation__mobile-trigger-container">
+  <a
+    class="c-docs-navigation__mobile-trigger"
+    href="#"
+    {{action "toggleMobileNav"}}
+  >
+    <div>
+      <i class="push--right fa fa-angle-{{if mobileTrigger.mobileNavExpanded 'up' 'down'}}"></i>
+      {{if mobileTrigger.mobileNavExpanded 'Hide' 'Show'}} navigation
+      <i class="push--left fa fa-angle-{{if mobileTrigger.mobileNavExpanded 'up' 'down'}}"></i>
+    </div>
+  </a>
+</div>

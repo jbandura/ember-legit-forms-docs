@@ -41,3 +41,8 @@
   line-height: $font-size * 1.5;
 }
 
+@mixin heading() {
+  font-weight: $fw-bold;
+  color: $eden-color;
+}
+

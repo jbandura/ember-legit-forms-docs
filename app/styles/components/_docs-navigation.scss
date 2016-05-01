@@ -1,16 +1,24 @@
+$mobile-nav-color: lighten($light-gray-2-color, 2%);
+
 .c-docs-navigation {
   padding-left: 0;
   list-style-type: none;
+  margin-bottom: 0;
 
   li {
     margin: 10px 0;
     padding: 10px;
-    text-align: right;
+    text-align: center;
     font-size: $fs-3;
     border-bottom: 1px solid darken($light-gray-2-color, 10%);
 
+    @media #{$md-up} {
+      text-align: right;
+    }
+
     &:last-of-type {
       border: 0;
+      margin-bottom: 0;
     }
 
     &.active {
@@ -29,4 +37,32 @@
     }
   }
 
+  &__title {
+    @include heading;
+    margin-top: $docs-top-distance;
+    text-align: center;
+
+    @media #{$md-up} {
+      margin-top: $docs-top-distance * 2;
+      text-align: right;
+    }
+  }
+
+  &__mobile-trigger {
+    display: block;
+    margin: 0 auto;
+    padding: 20px;
+    position: relative;
+    text-align: center;
+    font-weight: bold;
+    border-bottom: 1px solid darken($light-gray-2-color, 10%);
+
+    @media #{$md-up} {
+      display: none;
+    }
+  }
+
+  &__mobile-trigger-container {
+    border-top: 1px solid darken($light-gray-2-color, 10%);
+  }
 }

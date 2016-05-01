@@ -1,9 +1,14 @@
 .main {
 
   &__hero-text {
-    @include text($fs-jumbo, $fw-light, $eden-color);
-    margin: 100px 0;
+    @include text($fs-9, $fw-light, $eden-color);
+    margin: 70px 0;
     text-align: center;
+
+    @media #{$md-up} {
+      margin: 100px 0;
+      font-size: $fs-jumbo;
+    }
 
     b {
       font-weight: $fw-normal;

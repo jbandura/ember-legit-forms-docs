@@ -4,7 +4,11 @@
 
   &--fixed-width {
     margin: 0 auto;
-    width: 461px;
+    width: 100%;
+
+    @media #{$md-up} {
+      width: 461px;
+    }
   }
 
   &__nav {
@@ -33,11 +37,10 @@
   }
 
   &__content {
-    padding: 12px;
-    font-size: $fs-code;
+    @include text($fs-code, $fw-normal, $terminal-fg-color);
     font-family: $ff-code;
+    padding: 12px;
     background-color: $terminal-bg-color;
-    color: $terminal-fg-color;
     border-radius: 0 0 5px 5px;
   }
 
@@ -47,6 +50,10 @@
 
   &__shell-command {
     padding: 50px 12px;
-    font-size: $fs-5;
+    font-size: $fs-4;
+
+    @media #{$md-up} {
+      font-size: $fs-5;
+    }
   }
 }

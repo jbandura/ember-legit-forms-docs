@@ -1,11 +1,9 @@
 {{#lf-form rules=rules as |validateFunction|}}
-  {{lf-select
-    label="Select field"
+  {{lf-textarea
+    label="Foo property"
     property=foo
     name="foo"
-    content=fields
-    labelPath="label"
-    valuePath="value"
+    rows=10
     validate=validateFunction
     on-update=(action (mut foo))
   }}

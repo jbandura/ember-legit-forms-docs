@@ -9,6 +9,14 @@ export default [
   },
   {
     id: 2,
+    name: 'requiredUnlessData',
+    'locales-key': 'required',
+    'default-message': "can't be blank",
+    description: "Checks whether given field is filled in (uses <code>Ember.isNone</code>) <strong>but</strong> it's only checked if the key <codE>dataKey</code> is not truthy in the <strong>data</strong> hash. It basically allows to turn off the <code>required</code> validation in certain circumstances.",
+    usage: "firstname: 'requiredUnlessData(foo)'"
+  },
+  {
+    id: 3,
     name: 'accepted',
     'locales-key': 'mustBeAccepted',
     'default-message': 'must be accepted',
@@ -16,7 +24,7 @@ export default [
     usage: "termsOfService: 'accepted'",
   },
   {
-    id: 3,
+    id: 4,
     name: 'alpha',
     'locales-key': 'mustBeAlpha',
     'default-message': 'must consist only of alphabetic characters',
@@ -24,7 +32,7 @@ export default [
     usage: "firstName: 'alpha'"
   },
   {
-    id: 4,
+    id: 5,
     name: 'alphanumeric',
     'locales-key': 'mustBeAlphanumeric',
     'default-message': 'must consist only of alphanumeric characters',
@@ -32,7 +40,7 @@ export default [
     usage: "nickname: 'alphanumeric'"
   },
   {
-    id: 5,
+    id: 6,
     name: 'numeric',
     'locales-key': 'mustBeNumeric',
     'default-message': 'must be a number',
@@ -40,7 +48,7 @@ export default [
     usage: "phone: 'numeric'",
   },
   {
-    id: 6,
+    id: 7,
     name: 'in',
     'locales-key': 'mustBeInArray',
     'default-message': 'value not allowed',
@@ -48,7 +56,7 @@ export default [
     usage: `field: 'in(foo,bar,baz)' // value can only be "foo", "bar" or "baz"`
   },
   {
-    id: 7,
+    id: 8,
     name: 'notIn',
     'locales-key': 'mustBeNotInArray',
     'default-message': 'value not allowed',
@@ -56,7 +64,7 @@ export default [
     usage: `field: 'notIn(foo,bar,baz)' // value must not be "foo", "bar" or "baz"`
   },
   {
-    id: 8,
+    id: 9,
     name: 'between',
     'locales-key': 'mustBeBetween',
     'default-message': 'must be between {{minLength}} and {{maxLength}}',
@@ -64,7 +72,7 @@ export default [
     usage: "name: 'between(3,5)' // min = 3, max = 5"
   },
   {
-    id: 9,
+    id: 10,
     name: 'max',
     'locales-key': 'tooLong',
     'default-message': 'too long',
@@ -72,7 +80,7 @@ export default [
     usage: "name: 'max(3)'"
   },
   {
-    id: 10,
+    id: 11,
     name: 'min',
     'locales-key': 'tooShort',
     'default-message': 'too short',
@@ -80,7 +88,7 @@ export default [
     usage: "name: 'min(3)'"
   },
   {
-    id: 11,
+    id: 12,
     name:'size',
     'locales-key': 'mustBeOfSize',
     'default-message': 'must be exactly {{size}} characters long',
@@ -88,7 +96,7 @@ export default [
     usage: "number: 'size(8)'"
   },
   {
-    id: 12,
+    id: 13,
     name: 'regex',
     'locales-key': 'mustMatchRegex',
     'default-message': 'must have a proper format',
@@ -96,7 +104,7 @@ export default [
     usage: "name: { regex: /^Foo(.*)/ } // must begin with Foo"
   },
   {
-    id: 13,
+    id: 14,
     name: 'same',
     'locales-key': 'mustBeSame',
     'default-message': 'must match {{fieldName}}',
@@ -107,7 +115,7 @@ export default [
     `
   },
   {
-    id: 14,
+    id: 15,
     name: 'different',
     'locales-key': 'mustBeDifferent',
     'default-message': 'must be different than {{fieldName}}',
@@ -118,7 +126,7 @@ export default [
     `
   },
   {
-    id: 15,
+    id: 16,
     name: 'url',
     'locales-key': 'mustBeValidURL',
     'default-message': 'must be a valid URL',
@@ -126,7 +134,7 @@ export default [
     usage: "website: 'url'"
   },
   {
-    id: 16,
+    id: 17,
     name: 'email',
     'locales-key': 'mustBeValidEmail',
     'default-message': 'must be a valid email address',

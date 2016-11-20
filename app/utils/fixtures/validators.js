@@ -12,7 +12,7 @@ export default [
     name: 'requiredUnlessData',
     'locales-key': 'required',
     'default-message': "can't be blank",
-    description: "Checks whether given field is filled in (uses <code>Ember.isNone</code>) <strong>but</strong> it's only checked if the key <codE>dataKey</code> is not truthy in the <strong>data</strong> hash. It basically allows to turn off the <code>required</code> validation in certain circumstances.",
+    description: "Checks whether given field is filled in (uses <code>Ember.isNone</code>) <strong>but</strong> it's only checked if the key <code>dataKey</code> is not truthy in the <strong>data</strong> hash. It basically allows to turn off the <code>required</code> validation in certain circumstances.",
     usage: "firstname: 'requiredUnlessData(foo)'"
   },
   {

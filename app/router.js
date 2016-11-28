@@ -25,6 +25,7 @@ Router.map(function() {
     this.route('validators', function() {
       this.route('representing-validators');
       this.route('messages');
+      this.route('shared-validations');
       this.route('creating-custom-validators');
       this.route('defining-inline-validators');
     });

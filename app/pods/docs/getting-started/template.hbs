@@ -68,7 +68,7 @@ export default Component.extend({
 
 <p>and here's the result:</p>
 
-{{#code-preview triggers="preview,controller,template" selectedTab="preview" as |selectedTab|}}
+{{#code-preview triggers="preview,javascript,template" selectedTab="preview" as |selectedTab|}}
   {{#code-preview/outlet name="preview" selected=selectedTab}}
     {{examples/getting-started}}
   {{/code-preview/outlet}}

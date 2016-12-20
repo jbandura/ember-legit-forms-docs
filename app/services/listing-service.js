@@ -8,7 +8,7 @@ const {
 export default Service.extend({
   components: ['lf-form', 'lf-input', 'lf-textarea', 'lf-select'],
   validators: w(
-    `required requiredUnlessData accepted alpha alphanumeric numeric in notIn between max min size
-    regex same different url email`
+    `required requiredUnlessData accepted alpha alphanumeric numeric decimal in notIn between
+    max min size regex same different url email`
   )
 });

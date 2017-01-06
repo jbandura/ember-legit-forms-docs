@@ -1,0 +1,68 @@
+<h1 class="docs__title">Representing Validators</h1>
+
+<p>Validation rules can be defined in component or controller. They can be defined in following ways:</p>
+
+<h2>String Representation</h2>
+
+<p>
+  If you have simple validators you can represent them as string, joining validation rules with <code>|</code> symbol.
+  If validator function accepts arguments you can pass them in parentheses, divided by comma, e.g.:
+</p>
+
+{{#code-sample lang="js"}}
+password: 'required|between(5,6)'
+{{/code-sample}}
+
+<p>This field would be only valid if the value would be a non-empty string with length between 5 and 6.</p>
+
+<h2>Object Representation</h2>
+
+<p>You can also represent validators as a POJO. In this case you pass arguments as an array in the value or if the validator accepts no arguments you just pass <code>true</code>:</p>
+{{#code-sample lang="js"}}
+password: {
+  required: true, // no arguments so we just pass true as a value
+  between: [5,6], // 5 and 6 are arguments so we pass them as an array
+  max: 5, // if there is only one argument we can pass it without wrapping it in an array
+}
+{{/code-sample}}
+
+<p>
+  This is convenient for some validators (e.g. for regex where you don't have to escape special characters in regex rule).
+  It is the only way to chain predefined validators with inline ones, e.g.:
+</p>
+{{#code-sample lang="js"}}
+password: {
+  required: true,
+  between: [5,6],
+  inline: function(value) {
+    if (value !== 'foobar') {
+      return 'invalid value';
+    }
+  }
+}
+{{/code-sample}}
+
+{{#docs-note title="Note"}}
+Inline validators have to be passed in the <code>inline</code> key.
+{{/docs-note}}
+
+<h2>Verbose Object Representation</h2>
+
+<p>You can also define rules using more verbose object representation, like so:</p>
+{{#code-sample lang="js"}}
+  password: {
+    required: { check: true },
+    between: { check: [5,6] }
+  }
+{{/code-sample}}
+
+<p>
+  This way of defining is only recommended if you want to overwrite default messages (see {{link-to "Overwriting Messages" "docs.v2-0-0.validators.messages"}}).
+  There is no verbose representation for inline validators.
+</p>
+
+{{docs-subnavigation
+  nextRoute="validators.messages"
+  prevRoute="customizing-wrapper-markup"
+  version="v2-0-0"
+}}

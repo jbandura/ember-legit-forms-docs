@@ -1,0 +1,11 @@
+{{log model}}
+<h2>{{model.name}}</h2>
+<p><b>locales key</b>: <code>{{concat-string "" model.localesKey}}</code></p>
+<p><b>default message</b>: <code>{{concat-string "" model.defaultMessage}}</code></p>
+
+<p>
+  {{{model.description}}}
+</p>
+
+<h3>Usage:</h3>
+{{#code-sample lang="js"}}{{model.usage}}{{/code-sample}}

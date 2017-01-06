@@ -1,0 +1,13 @@
+{{#validator-description
+  name="requiredUnlessData"
+  localesKey="required"
+  defaultMessage="can't be blank"
+}}
+  Checks whether given field is filled in (uses <code>Ember.isNone</code>) <strong>but</strong> it's only checked if the key <code>dataKey</code> is not truthy in the <strong>data</strong> hash.
+  It basically allows to turn off the <code>required</code> validation in certain circumstances.
+{{/validator-description}}
+
+<h3>Usage:</h3>
+{{#code-sample lang="js"}}
+firstname: 'requiredUnlessData(foo)'
+{{/code-sample}}

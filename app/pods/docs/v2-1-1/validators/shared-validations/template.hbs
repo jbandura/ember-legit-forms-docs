@@ -1,0 +1,20 @@
+<h1 class="docs__title">Shared validations</h1>
+
+<p>Shared validation rules for more than one field are common - use <code>sharedValidations</code> to avoid repeating yourself.</p>
+
+{{#code-sample lang="js"}}
+rules: {
+  sharedValidations: {
+    // mark "email" and "password" as required
+    required: ['email', 'password'],
+  },
+  // additionally validate e-mail address
+  email: 'email',
+}
+{{/code-sample}}
+
+{{docs-subnavigation
+  prevRoute="validators.messages"
+  nextRoute="validators.computed-rules"
+  version="v2-1-1"
+}}

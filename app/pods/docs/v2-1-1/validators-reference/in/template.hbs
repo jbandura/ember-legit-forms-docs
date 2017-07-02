@@ -1,0 +1,12 @@
+{{#validator-description
+  name="in"
+  localesKey="mustBeInArray"
+  defaultMessage="value not allowed"
+}}
+  Checks if the field value is contained in the whitelist.
+{{/validator-description}}
+
+<h3>Usage:</h3>
+{{#code-sample lang="js"}}
+field: 'in(foo,bar,baz)' // value can only be "foo", "bar" or "baz"
+{{/code-sample}}

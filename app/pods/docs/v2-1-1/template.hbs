@@ -1,0 +1,17 @@
+<section class="docs">
+  <div class="container">
+    <div class="row">
+
+      <div class="col-md-3">
+        {{docs-navigation version="v2-1-1" onVersionChange=(action "onVersionChange")}}
+      </div>
+
+      <div class="col-md-9">
+        <div class="docs__content">
+          {{outlet}}
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>

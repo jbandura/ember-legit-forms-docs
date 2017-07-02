@@ -1,0 +1,39 @@
+<h2><code>lf-input</code></h2>
+
+This is a simple input field (can also be used as a checkbox). It only accepts the shared attributes:
+
+{{#code-preview triggers="preview,template,component" selectedTab="preview" as |selectedTab|}}
+  {{#code-preview/outlet name="preview" selected=selectedTab}}
+    {{examples/lf-input}}
+  {{/code-preview/outlet}}
+
+  {{#code-preview/outlet name="template" selected=selectedTab}}
+    {{#code-sample lang="js"}}
+\{{#lf-form rules=rules as |validateFunction|}}
+  \{{lf-input
+    label="Foo property"
+    property=foo
+    name="bar"
+    validate=validateFunction
+    on-update=(action (mut foo))
+  }}
+\{{/lf-form}}
+    {{/code-sample}}
+  {{/code-preview/outlet}}
+
+  {{#code-preview/outlet name="component" selected=selectedTab}}
+    {{#code-sample lang="js"}}
+import Ember from 'ember';
+
+const { Component } = Ember;
+
+export default Component.extend({
+  foo: '',
+  rules: {
+    foo: 'required'
+  }
+});
+    {{/code-sample}}
+  {{/code-preview/outlet}}
+
+{{/code-preview}}

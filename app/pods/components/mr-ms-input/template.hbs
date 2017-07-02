@@ -1,0 +1,5 @@
+<div class="btn-group" role="group" aria-label="...">
+  <button type="button" class="btn btn-{{if (eq selectedGender 'mr') 'primary' 'default'}}" {{action "clicked" "mr"}}>Mr</button>
+  <button type="button" class="btn btn-{{if (eq selectedGender 'ms') 'primary' 'default'}}" {{action "clicked" "ms"}}>Ms</button>
+  <button type="button" class="btn btn-{{if (not selectedGender) 'primary' 'default'}}" {{action "clicked" null}}>None</button>
+</div>

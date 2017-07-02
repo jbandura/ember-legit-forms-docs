@@ -1,0 +1,31 @@
+<h1 class="docs__title">Computed Rules</h1>
+
+<p>
+  It can happen that your validation rules are dependent on user interaction. For example you'd like to show different fields depending on user's choice of business type.
+  You'd want to make all fields required, while at the same time not throwing errors because on en empty field that's not even visible. You can achieve this using computed rules:
+</p>
+
+{{#code-sample lang="js"}}
+import Ember from 'ember';
+const { Component, computed } = Ember;
+
+export Component.extend({
+  rules: computed('businessType', function() {
+    const businessType = this.get('businessType');
+    if(businessType === 'groceries') {
+      return {
+        typeOfGroceriesSold: 'required',
+      };
+    } else {
+      // return other validation rules
+      //if user is not selling groceries
+    }
+  });
+});
+{{/code-sample}}
+
+{{docs-subnavigation
+  prevRoute="validators.shared-validations"
+  nextRoute="validators.creating-custom-validators"
+  version="v2-1-1"
+}}

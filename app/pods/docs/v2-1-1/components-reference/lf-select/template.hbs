@@ -1,0 +1,61 @@
+<h2><code>lf-select</code></h2>
+<p>This component represents a select field. It accepts an additional content property which is used to fill in the options list.</p>
+{{#code-preview triggers="preview,template,component" selectedTab="preview" as |selectedTab|}}
+  {{#code-preview/outlet name="preview" selected=selectedTab}}
+    {{examples/lf-select}}
+  {{/code-preview/outlet}}
+
+  {{#code-preview/outlet name="template" selected=selectedTab}}
+    {{#code-sample lang="js"}}
+\{{#lf-form rules=rules as |validateFunction|}}
+  \{{lf-select
+    label="Select field"
+    property=foo
+    name="foo"
+    content=fields
+    labelPath="label"
+    valuePath="value"
+    validate=validateFunction
+    on-update=(action (mut foo))
+  }}
+\{{/lf-form}}
+    {{/code-sample}}
+  {{/code-preview/outlet}}
+
+  {{#code-preview/outlet name="component" selected=selectedTab}}
+    {{#code-sample lang="js"}}
+import Ember from 'ember';
+
+const { Component } = Ember;
+
+export default Component.extend({
+  foo: '',
+  fields: [
+    { label: 'Foo option', value: 'foo' },
+    { label: 'Bar option', value: 'bar'}
+  ],
+  rules: {
+    foo: 'required'
+  }
+});
+    {{/code-sample}}
+  {{/code-preview/outlet}}
+
+{{/code-preview}}
+
+<h2>Attributes:</h2>
+
+<ul>
+  <li>
+    <code>content</code>: list of items that is used to fill the options list, for example
+      {{#code-sample lang="js"}}
+[{value: 'Value', label: 'Label'}]
+      {{/code-sample}}
+  </li>
+  <li>
+    <code>valuePath</code>: represents the key where the value can be found
+  </li>
+  <li>
+    <code>labelPath</code>: represents the key where the label can be found
+  </li>
+</ul>

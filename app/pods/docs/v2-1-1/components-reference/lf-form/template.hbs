@@ -1,0 +1,46 @@
+<h2><code>lf-form</code></h2>
+
+<p>This component does the heavy-lifting of managing field values and valid states. It can be invoked like so:</p>
+{{#code-sample lang="js"}}
+\{{#lf-form
+  rules=rules
+  data=data
+  validityChanged=(action (mut isValid))
+  as |validateFunction|
+}}
+  \{{!-- inputs here --}}
+\{{/lf-form}}
+{{/code-sample}}
+
+<h2>Attributes</h2>
+
+<ul>
+  <li>
+    <code>onSubmit</code>: closure action that gets executed when the form is submitted
+  </li>
+  <li>
+    <code>preventSubmit</code>: boolean, if set to <code>true</code> it'll prevent submit and show all errors if the form is invalid (instead of submitting it as it is)
+  </li>
+  <li>
+    <code>rules</code>: a POJO binding field names to the corresponding validators
+  </li>
+  <li>
+    <code>data</code>: a POJO of custom data that you want to use in inline/custom validators (see Validator Object:get(data:key) section)
+  </li>
+  <li>
+    <code>validityChanged</code>: an action which is triggered every time the validity of form. You can use it for example to block submit button when form is not valid. It has the following signature:
+  {{#code-sample lang="js"}}
+  function validityChanged(validState) {
+    if (validState) {
+      //do something when whole form is valid
+    } else {
+      //do something when form is not valid (e.g. block the submit button)
+    }
+  }
+  {{/code-sample}}
+  </li>
+</ul>
+
+{{#docs-note title="Important"}}
+  The component also yields a validate function which has to be passed to the inputs in order for the validations to work properly.
+{{/docs-note}}

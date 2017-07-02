@@ -1,0 +1,12 @@
+{{#validator-description
+  name="between"
+  localesKey="mustBeBetween"
+  defaultMessage="must be between {{minLength}} and {{maxLength}}"
+}}
+Checks if <code>max >= value.length >= min</code>.
+{{/validator-description}}
+
+<h3>Usage:</h3>
+{{#code-sample lang="js"}}
+name: 'between(3,5)' // min = 3, max = 5
+{{/code-sample}}

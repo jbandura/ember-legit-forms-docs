@@ -1,0 +1,31 @@
+<h1 class="docs__title">Validators Reference</h1>
+
+<div class="row">
+  <div class="col-md-6">
+    <ul>
+      {{#each validatorsCol1 as |validator|}}
+        {{#link-to (concat "docs.v2-0-0.validators-reference." (dasherize validator)) tagName="li"}}
+          <a href="#">{{validator}}</a>
+        {{/link-to}}
+      {{/each}}
+    </ul>
+  </div>
+
+  <div class="col-md-6">
+    <ul>
+      {{#each validatorsCol2 as |validator|}}
+        {{#link-to (concat "docs.v2-0-0.validators-reference." (dasherize validator)) tagName="li"}}
+          <a href="#">{{validator}}</a>
+        {{/link-to}}
+      {{/each}}
+    </ul>
+  </div>
+</div>
+
+{{outlet}}
+
+{{docs-subnavigation
+  nextRoute="credits"
+  prevRoute="validators.defining-inline-validators"
+  version="v2-0-0"
+}}

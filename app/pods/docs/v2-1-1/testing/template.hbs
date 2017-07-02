@@ -1,0 +1,65 @@
+<h1 class="docs__title">Testing</h1>
+
+<p>To make the testing as effortless as possible, ember-legit-forms provides following helpers for testing:</p>
+
+<h2>Acceptance tests</h2>
+<h3><code>fillInBlurAcceptance(selector, value, inputType = 'input')</code></h3>
+<p>
+  This helper makes it easy to fill in the field (by default <code>input</code>) and triggers all necessary events in order to validate the element.
+</p>
+<p><b>Usage example:</b></p>
+{{#code-sample lang="javascript" title="tests/acceptance/example-test.js"}}
+import {
+  fillInBlurAcceptance as fillIn
+} from '[your-app]/tests/helpers/ember-legit-forms';
+//...
+fillIn('.js-name', 'Your value goes here');
+andThen(() => {
+  // perform some assertions
+});
+//...
+{{/code-sample}}
+
+<h3><code>fillInSelectAcceptance(selector, value)</code></h3>
+<p>
+  Similiar to <code>fillInBlurAcceptance</code> but for <code>select</code> fields.
+</p>
+
+<h3><code>fillInTextareaAcceptance(selector, value)</code></h3>
+<p>
+  Similiar to <code>fillInBlurAcceptance</code> but for <code>textarea</code> fields.
+</p>
+
+<h2>Integration tests</h2>
+<h3><code>fillInBlurIntegration(context, selector, value, inputType = 'input')</code></h3>
+<p>
+  Performs the same task as the <code>fillInBlurAcceptance</code>, but you have to pass in the context.
+</p>
+<p><b>Usage example:</b></p>
+{{#code-sample lang="javascript" title="tests/acceptance/example-test.js"}}
+import {
+  fillInBlurIntegration as fillIn
+} from '[your-app]/tests/helpers/ember-legit-forms';
+//...
+fillIn(this, '.js-name', 'Your value goes here');
+andThen(() => {
+  // perform some assertions
+});
+//...
+{{/code-sample}}
+
+<h3><code>fillInSelectIntegration(context, selector, value)</code></h3>
+<p>
+  Similiar to <code>fillInBlurIntegration</code> but for <code>select</code> fields.
+</p>
+
+<h3><code>fillInTextareaIntegration(context, selector, value)</code></h3>
+<p>
+  Similiar to <code>fillInBlurIntegration</code> but for <code>textarea</code> fields.
+</p>
+
+{{docs-subnavigation
+  prevRoute="creating-custom-inputs"
+  nextRoute="credits"
+  version="v2-1-1"
+}}

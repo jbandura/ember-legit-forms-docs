@@ -1,0 +1,79 @@
+<h1 class="docs__title">Showing External Errors</h1>
+
+<p>
+  Sometimes you have to display errors that do not come from validators but rather from external source, e.g. backend.
+  In such cases you can assign errors to every input field, like so:
+</p>
+
+{{#code-sample lang="handlebars" title="example/component.hbs"}}
+  \{{#lf-input rules=rules as |v|}}
+    \{{lf-input
+      label="First Name"
+      ...
+      errors=externalErrors.name
+      ...
+    }}
+  \{{/lf-input}}
+{{/code-sample}}
+<br />
+<p>
+  As long as the <code>externalErrors.name</code> property in not empty,  the errors will be shown.
+</p>
+
+{{#code-preview triggers="preview,javascript,template" selectedTab="preview" as |selectedTab|}}
+  {{#code-preview/outlet name="preview" selected=selectedTab}}
+    {{examples/showing-external-errors}}
+  {{/code-preview/outlet}}
+  {{#code-preview/outlet name="javascript" selected=selectedTab}}
+    {{#code-sample}}
+import Ember from 'ember';
+
+const { Component } = Ember;
+
+export default Component.extend({
+  rules: {},
+  errors: {},
+
+  actions: {
+    onFillWithErrors() {
+      this.set('errors', {
+        firstName: ["can't be blank"]
+      });
+    }
+  }
+});
+    {{/code-sample}}
+  {{/code-preview/outlet}}
+  {{#code-preview/outlet name="template" selected=selectedTab}}
+    {{#code-sample lang="handlebars"}}
+\{{!-- example/template.hbs --}}
+
+\{{#lf-form rules=rules as |v|}}
+  \{{lf-input
+    name="name"
+    label="First name"
+    errors=errors.firstName
+    validate=v
+  }}
+\{{/lf-form}}
+&lt;p&gt;
+  &lt;a href="#" class="btn btn-primary" \{{action "onFillWithErrors"}}&gt;Fill with errors&lt;/a&gt;
+&lt;/p&gt;
+\{{/lf-form}}
+    {{/code-sample}}
+  {{/code-preview/outlet}}
+{{/code-preview}}
+
+<h2>Translating errors</h2>
+
+<p>
+  By default the errors are translated with i18n (if available) using the error text as key.
+  If i18n is not installed, it just shows the message as passed in.
+</p>
+
+
+{{docs-subnavigation
+  prevRoute="customizing-markup"
+  nextRoute="creating-custom-inputs"
+  version="v2-1-1"
+}}

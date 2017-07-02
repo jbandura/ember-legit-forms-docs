@@ -1,0 +1,12 @@
+{{#validator-description
+  name="notIn"
+  localesKey="mustBeNotInArray"
+  defaultMessage="value not allowed"
+}}
+  Field value must not be contained in the arguments array.
+{{/validator-description}}
+
+<h3>Usage:</h3>
+{{#code-sample lang="js"}}
+field: 'notIn(foo,bar,baz)' // value must not be "foo", "bar" or "baz"
+{{/code-sample}}

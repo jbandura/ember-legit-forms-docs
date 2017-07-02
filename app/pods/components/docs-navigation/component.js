@@ -5,11 +5,13 @@ const { Component, inject: { service }, computed } = Ember;
 
 export default Component.extend({
   mobileTrigger: service(),
-  version: 'v1-1-4',
-  versions: [
-    { label: "1.1.4", value: 'v1-1-4' },
-    { label: "2.0", value: 'v2-0-0' },
-  ],
+  version: null,
+  versions: computed(function() {
+    return Object.keys(subpages).map((versionStr) => {
+      const label = versionStr.replace('v', '').replace(/-/g, '.');
+      return { label, value: versionStr }
+    });
+  }),
   pages: computed('version', function() {
     const version = this.get('version');
     return subpages[version];

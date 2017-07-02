@@ -1,0 +1,12 @@
+{{#validator-description
+  name="regex"
+  localesKey="mustMatchRegex"
+  defaultMessage="must have a proper format"
+}}
+Checks if field value matches regex. Note: the object representation is recommended for this validator
+{{/validator-description}}
+
+<h3>Usage:</h3>
+{{#code-sample lang="js"}}
+name: { regex: /^Foo(.*)/ } // must begin with Foo
+{{/code-sample}}

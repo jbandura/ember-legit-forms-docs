@@ -52,6 +52,7 @@ const subpages = {
         { title: "Components Reference", route: "components-reference", reference: "components" },
         { title: "Customizing Wrapper Markup", route: "customizing-wrapper-markup"},
         { title: "Showing External Errors", route: "showing-external-errors" },
+        { title: "Testing", route: "testing" },
         { title: "Credits", route: "credits"},
       ]
     },

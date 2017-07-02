@@ -1,0 +1,11 @@
+{{#lf-form rules=rules as |v|}}
+  {{lf-input
+    name="asd"
+    label="First name"
+    errors=errors.firstName
+    validate=v
+  }}
+{{/lf-form}}
+<p>
+  <a href="#" class="btn btn-primary" {{action "onFillWithErrors"}}>Fill with errors</a>
+</p>

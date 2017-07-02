@@ -42,26 +42,33 @@ export default Component.extend({
 
 <p>Now you can declare your inputs, for example let's define a simple text input using the <code>lf-input</code> component that comes by default:</p>
 
-{{#code-sample lang="handlebars" title="example/template.hbs"}}
-\{{#lf-form rules=rules as |validateFunc|}}
+{{#code-sample lang="htmlbars" title="example/template.hbs"}}
+\{{#lf-form rules=rules onSubmit=(action "onSubmit") as |validateFunc isValid|}}
   \{{lf-input
     name="firstName"
     property=model.firstname
     on-update=(action (mut model.firstName))
     validate=validateFunc
   }}
+  \{{input type="submit" disabled=(not isValid)}}
 \{{/lf-form}}
 {{/code-sample}}
 
 {{#docs-note title="Note"}}
-<ul>
-  <li>The string passed to <code>name</code> attribute must correspond to the key name in rules hash.</li>
-  <li>we have to pass the yielded <code>validateFunc</code> to the <code>validate</code> attribute of our input component. If we do not pass it our field will always be valid.</li>
-  <li>
-    By default <code>ember-legit-forms</code> uses Twitter Bootstrap's markup for forms.
-    If you would like to change it, please see {{link-to "Customizing Markup" "docs.v2-0-0.customizing-wrapper-markup"}} section.
-  </li>
-</ul>
+  <ul>
+    <li>The string passed to <code>name</code> attribute must correspond to the key name in rules hash.</li>
+    <li>we have to pass the yielded <code>validateFunc</code> to the <code>validate</code> attribute of our input component. If we do not pass it our field will always be valid.</li>
+    <li>
+      By default <code>ember-legit-forms</code> uses Twitter Bootstrap's markup for forms.
+      If you would like to change it, please see {{link-to "Customizing Markup" "docs.v2-0-0.customizing-wrapper-markup"}} section.
+    </li>
+    <li>
+       You can trigger action when the form is submitted passing a closure action to <code>onSubmit</code> property of <code>lf-form</code> component.
+    </li>
+    <li>
+      <code>lf-form</code> component yields <code>isValid</code> property that you can use e.g. for disabling button when form is not valid.
+    </li>
+  </ul>
 {{/docs-note}}
 
 <h2>Result</h2>
@@ -72,7 +79,7 @@ export default Component.extend({
   {{#code-preview/outlet name="preview" selected=selectedTab}}
     {{examples/getting-started}}
   {{/code-preview/outlet}}
-  {{#code-preview/outlet name="controller" selected=selectedTab}}
+  {{#code-preview/outlet name="javascript" selected=selectedTab}}
     {{#code-sample}}
 /* example/component.js */
 
@@ -81,28 +88,43 @@ import Ember from 'ember';
 const { Component } = Ember;
 
 export default Component.extend({
+  text: null,
   model: Ember.Object.create({
     firstName: ''
   }),
+  formData: {
+    firstName: null,
+  },
   // rules hash for validation
   rules: {
     firstName: 'required'
+  },
+  
+  actions: {
+    textInput(isValid, value) {
+      this.set('text', true);
+      this.set('model.firstName', this.get('formData.firstName'));
+    }
   }
 });
+
     {{/code-sample}}
   {{/code-preview/outlet}}
   {{#code-preview/outlet name="template" selected=selectedTab}}
-    {{#code-sample lang="handlebars"}}
+    {{#code-sample lang="htmlbars"}}
 \{{!-- example/template.hbs --}}
-
-\{{#lf-form rules=rules as |validateFunc|}}
+\{{#if text}}
+  Text input: {{model.firstName}}
+\{{/if}}
+\{{#lf-form rules=rules onSubmit=(action "textInput") as |validateFunc isValid|}}
   \{{lf-input
     label="First Name"
     name="firstName"
     property=model.firstname
-    on-update=(action (mut model.firstName))
+    on-update=(action (mut formData.firstName))
     validate=validateFunc
   }}
+  \{{input type="button" disabled=(not isValid) text="Submit"}}
 \{{/lf-form}}
     {{/code-sample}}
   {{/code-preview/outlet}}

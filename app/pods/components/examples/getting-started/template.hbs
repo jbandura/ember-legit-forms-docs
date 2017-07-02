@@ -1,9 +1,16 @@
-{{#lf-form rules=rules as |validateFunc|}}
+{{#if text}}
+<p>
+  Text input: {{model.firstName}} 
+</p>
+{{/if}}
+
+{{#lf-form rules=rules onSubmit=(action "textInput") as |validateFunc isValid|}}
   {{lf-input
     name="firstName"
     label="First Name"
     property=model.firstname
-    on-update=(action (mut model.firstName))
+    on-update=(action (mut formData.firstName))
     validate=validateFunc
   }}
+  {{input type="submit" disabled=(not isValid) text="Submit"}}
 {{/lf-form}}

@@ -1,0 +1,97 @@
+<h1 class="docs__title">Creating Custom Inputs</h1>
+<p>
+  If you need something beyond the basic inputs provided by ember-legit-forms, you can easily roll your own input.
+  To do so you need only to replace the <code>inputComponent</code> property on the <code>lf-input</code> component:
+</p>
+
+{{#code-sample lang="htmlbars"}}
+\{{!-- example-component/template.hbs --}}
+
+\{{#lf-form rules=rules as |validate|}}
+  \{{lf-input
+      name="mrMsInput"
+      property=model.foo
+      inputClass="mr-ms-input"
+      inputComponent="mr-ms-input"
+      validate=validate
+  }}
+\{{/lf-form}}
+{{/code-sample}}
+<p>
+  When combined with some basic logic for <code>mr-ms-input</code> component, it results in something like this:
+</p>
+
+{{#code-preview triggers="preview,lfinput.hbs,lfinput.js,mr-ms-input.js,mr-ms-input.hbs" selectedTab="preview" as |selectedTab|}}
+  {{#code-preview/outlet name="preview" selected=selectedTab}}
+    {{custom-input-example}}
+  {{/code-preview/outlet}}
+
+  {{#code-preview/outlet name="lfinput.hbs" selected=selectedTab}}
+    {{#code-sample lang="htmlbars"}}
+\{{!-- example-component/template.hbs --}}
+
+\{{#lf-form rules=rules as |validate|}}
+  \{{lf-input
+      name="mrMsInput"
+      property=model.foo
+      inputClass="mr-ms-input"
+      inputComponent="mr-ms-input"
+      validate=validate
+  }}
+\{{/lf-form}}
+    {{/code-sample}}
+  {{/code-preview/outlet}}
+
+  {{#code-preview/outlet name="lfinput.js" selected=selectedTab}}
+    {{#code-sample lang="js"}}
+import Ember from 'ember';
+import Component from 'ember-component';
+
+export default Component.extend({
+  rules: {
+    mrMsInput: 'required'
+  },
+});
+    {{/code-sample}}
+  {{/code-preview/outlet}}
+  {{#code-preview/outlet name="mr-ms-input.js" selected=selectedTab}}
+    {{#code-sample lang="js"}}
+import Ember from 'ember';
+import Component from 'ember-component';
+
+export default Component.extend({
+  actions: {
+    clicked(val) {
+      this.set('selectedGender', val);
+      this.get('update')(val);
+    }
+  }
+});
+    {{/code-sample}}
+  {{/code-preview/outlet}}
+
+  {{#code-preview/outlet name="mr-ms-input.hbs" selected=selectedTab}}
+    {{#code-sample lang="htmlbars"}}
+&lt;div class="btn-group" role="group" aria-label="..."&gt;
+  &lt;button type="button" class="btn btn-\{{if (eq selectedGender 'mr') 'primary' 'default'}}" \{{action "clicked" "mr"}}&gt;Mr&lt;/button&gt;
+  &lt;button type="button" class="btn btn-\{{if (eq selectedGender 'ms') 'primary' 'default'}}" \{{action "clicked" "ms"}}&gt;Ms&lt;/button&gt;
+  &lt;button type="button" class="btn btn-\{{if (not selectedGender) 'primary' 'default'}}" \{{action "clicked" null}}&gt;None&lt;/button&gt;
+&lt;/div&gt;
+    {{/code-sample}}
+  {{/code-preview/outlet}}
+
+{{/code-preview}}
+
+<p>
+  As you can see, we can pretty easily roll our own components by simply remembering to call <code>update</code> whenever we want the new value to be validated.
+  Lf-form will validate whatever gets send in the <code>update</code> hook.
+</p>
+<p>
+  <a href="https://github.com/jbandura/ember-legit-forms/blob/master/addon/templates/components/lf-input.hbs">Check out the source</a> for more information about which attributes get passed to the input.
+</p>
+
+{{docs-subnavigation
+  prevRoute="showing-external-errors"
+  nextRoute="using-with-ember-changeset"
+  version="v2-2-0"
+}}

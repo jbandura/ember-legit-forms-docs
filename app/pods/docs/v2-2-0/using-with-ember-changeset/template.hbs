@@ -1,0 +1,94 @@
+<h1 class="docs__title">Using with ember-changeset</h1>
+
+<p>
+  If you are already using <code>ember-changeset</code> and
+  <code>ember-changeset-validations</code> in your existing application, you
+  can easily integrate it with <code>ember-legit-forms</code> by passing in the
+  changeset to <code>changeset</code> property on <code>lf-form</code>
+  component.
+</p>
+
+{{#docs-note title="Note:"}}
+  It's not currently possible to use ember-changeset without using ember-changeset-validations!
+{{/docs-note}}
+{{#docs-note title="Warning:" type="warning"}}
+  If you use changeset, you cannot pass in the <code>rules</code> property to <code>lf-form</code> component.
+{{/docs-note}}
+
+<h2>Example usage</h2>
+
+{{#code-preview triggers="preview,javascript,template" selectedTab="preview" as |selectedTab|}}
+  {{#code-preview/outlet name="preview" selected=selectedTab}}
+    {{examples/changeset-example}}
+  {{/code-preview/outlet}}
+  {{#code-preview/outlet name="javascript" selected=selectedTab}}
+    {{#code-sample}}
+// example/component.js
+import Component from '@ember/component';
+import Changeset from 'ember-changeset';
+import {
+  validatePresence,
+  validateLength,
+} from 'ember-changeset-validations/validators';
+import lookupValidator from 'ember-changeset-validations';
+
+export default Component.extend({
+  user: {
+    firstName: '',
+    lastName: '',
+  },
+  UserValidations: {
+    firstName: [
+      validatePresence(true),
+      validateLength({ min: 4 })
+    ],
+    lastName: validatePresence(true),
+  },
+
+
+  init() {
+    this._super(...arguments);
+    const user = this.get('user');
+    this.changeset = new Changeset(user, lookupValidator(this.UserValidations), this.UserValidations);
+  },
+
+  actions: {
+    onSubmit(changeset) {
+      console.log('Action!')
+    }
+  }
+});
+    {{/code-sample}}
+  {{/code-preview/outlet}}
+  {{#code-preview/outlet name="template" selected=selectedTab}}
+    {{#code-sample lang="htmlbars"}}
+\{{!-- example/template.hbs --}}
+\{{#lf-form
+  changeset=changeset
+  onSubmit=(action "onSubmit" changeset)
+  as |v isValid|
+}}
+  \{{lf-input
+    name="firstName"
+    label="First Name"
+    on-update=(action (mut changeset.firstName))
+    validate=v
+  }}
+
+  \{{lf-input
+    name="lastName"
+    label="Last Name"
+    on-update=(action (mut changeset.lastName))
+    validate=v
+  }}
+  &lt;button disabled=\{{not isValid}}&gt;Submit&lt;/button&gt;
+\{{/lf-form}}
+    {{/code-sample}}
+  {{/code-preview/outlet}}
+{{/code-preview}}
+
+{{docs-subnavigation
+  prevRoute="creating-custom-inputs"
+  nextRoute="testing"
+  version="v2-2-0"
+}}

@@ -1,0 +1,176 @@
+<h1 class="docs__title">Getting Started</h1>
+
+<h2>Watch introduction video:</h2>
+<p>
+  <iframe width="790" height="444" src="https://www.youtube.com/embed/qM39MM8qfDM" frameborder="0" allowfullscreen></iframe>
+</p>
+
+<h2>Step 1</h2>
+
+<p>
+  First create a rules hash where you put your validation rules.
+  The keys of the hash will be names of the fields - you have to reference them in <code>name</code> attribute in the inputs component later.
+  It can be declared in controller or component, e.g.:
+</p>
+
+{{#code-sample lang="js" title="example/component.js"}}
+
+import Ember from 'ember';
+
+const { Component } = Ember;
+
+export default Component.extend({
+  model: Ember.Object.create({
+    firstName: ''
+  }),
+  // rules hash for validation
+  rules: {
+    firstName: 'required'
+  }
+});
+{{/code-sample}}
+
+<h2>Step 2</h2>
+
+<p>
+  Add a <code>lf-form</code> component. This component accepts the rules hash and yields a <code>validate</code> function that you have to pass to input components:
+</p>
+{{#code-sample lang="handlebars" title="example/template.hbs"}}
+\{{#lf-form rules=rules as |validateFunc|}}
+  \{{!-- inputs will go here --}}
+\{{/lf-form}}
+{{/code-sample}}
+
+<h2>Step 3</h2>
+
+<p>Now you can declare your inputs, for example let's define a simple text input using the <code>lf-input</code> component that comes by default:</p>
+
+{{#code-sample lang="htmlbars" title="example/template.hbs"}}
+\{{#lf-form rules=rules as |validateFunc isValid|}}
+  \{{lf-input
+    name="firstName"
+    property=model.firstname
+    on-update=(action (mut model.firstName))
+    validate=validateFunc
+  }}
+  \{{input type="submit" disabled=(not isValid)}}
+\{{/lf-form}}
+{{/code-sample}}
+
+{{#docs-note title="Note"}}
+  <ul>
+    <li>The string passed to <code>name</code> attribute must correspond to the key name in rules hash.</li>
+    <li>we have to pass the yielded <code>validateFunc</code> to the <code>validate</code> attribute of our input component. If we do not pass it our field will always be valid.</li>
+    <li>
+      By default <code>ember-legit-forms</code> uses Twitter Bootstrap's markup for forms.
+      If you would like to change it, please see {{link-to "Customizing Markup" "docs.v2-0-0.customizing-wrapper-markup"}} section.
+    </li>
+    <li>
+      <code>lf-form</code> component yields <code>isValid</code> property that you can use e.g. for disabling button when form is not valid.
+    </li>
+  </ul>
+{{/docs-note}}
+
+<h2>Step 4</h2>
+<p>
+  In order to actually perform an action when the submit button is clicked, you can supply the <code>onSubmit</code> action:
+</p>
+
+{{#code-sample lang="js" title="example/component.js"}}
+
+import Ember from 'ember';
+
+const { Component } = Ember;
+
+export default Component.extend({
+  model: Ember.Object.create({
+    firstName: ''
+  }),
+  // rules hash for validation
+  rules: {
+    firstName: 'required'
+  },
+  actions: {
+    textInput(isValid, value) {
+      this.set('text', true);
+      this.set('model.firstName', this.get('formData.firstName'));
+    }
+  }
+});
+{{/code-sample}}
+{{#code-sample lang="htmlbars" title="example/template.hbs"}}
+\{{#if text}}
+  Text input: \{{model.firstName}}
+\{{/if}}
+\{{#lf-form rules=rules onSubmit=(action "textInput") as |validateFunc isValid|}}
+  \{{!-- --}}
+\{{/lf-form}}
+{{/code-sample}}
+
+<h2>Result</h2>
+
+<p>and here's the result:</p>
+
+{{#code-preview triggers="preview,javascript,template" selectedTab="preview" as |selectedTab|}}
+  {{#code-preview/outlet name="preview" selected=selectedTab}}
+    {{examples/getting-started}}
+  {{/code-preview/outlet}}
+  {{#code-preview/outlet name="javascript" selected=selectedTab}}
+    {{#code-sample}}
+/* example/component.js */
+
+import Ember from 'ember';
+
+const { Component } = Ember;
+
+export default Component.extend({
+  text: null,
+  model: Ember.Object.create({
+    firstName: ''
+  }),
+  formData: {
+    firstName: null,
+  },
+  // rules hash for validation
+  rules: {
+    firstName: 'required'
+  },
+
+  actions: {
+    textInput(isValid, value) {
+      this.set('text', true);
+      this.set('model.firstName', this.get('formData.firstName'));
+    }
+  }
+});
+
+    {{/code-sample}}
+  {{/code-preview/outlet}}
+  {{#code-preview/outlet name="template" selected=selectedTab}}
+    {{#code-sample lang="htmlbars"}}
+\{{!-- example/template.hbs --}}
+\{{#if text}}
+  Text input: \{{model.firstName}}
+\{{/if}}
+\{{#lf-form rules=rules onSubmit=(action "textInput") as |validateFunc isValid|}}
+  \{{lf-input
+    label="First Name"
+    name="firstName"
+    property=model.firstname
+    on-update=(action (mut formData.firstName))
+    validate=validateFunc
+  }}
+  \{{input type="button" disabled=(not isValid) text="Submit"}}
+\{{/lf-form}}
+    {{/code-sample}}
+  {{/code-preview/outlet}}
+{{/code-preview}}
+<h2>That's It</h2>
+
+<p>You've successfully started using ember-legit-forms!</p>
+
+{{docs-subnavigation
+  nextRoute="components-reference"
+  prevRoute="installing"
+  version="v2-2-0"
+}}

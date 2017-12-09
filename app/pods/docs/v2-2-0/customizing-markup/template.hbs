@@ -1,0 +1,102 @@
+<h1 class="docs__title">Customizing Markup</h1>
+
+<h2>Customizing Label Component</h2>
+
+<p>In order to overwrite the label component pass the <code>labelComponent</code> attribute providing the name of your component, e.g like so:</p>
+{{#code-sample lang="js"}}
+\{{!-- example-component/template.hbs --}}
+
+\{{#lf-form rules=rules as |validateFunction|}}
+  \{{lf-input
+    name="foo"
+    property=model.foo
+    labelComponent="my-label-component"
+    validate=validateFunction
+  }}
+{{/code-sample}}
+
+<p><code>my-label-component</code> should accept a <code>label</code> attribute.</p>
+
+<h2>Customizing Error Messages Component</h2>
+
+<p>When we want to display error messages in a different way we can do it in the same way we did it with the label component. Example:</p>
+
+{{#code-sample}}
+\{{!-- example-component/template.hbs --}}
+
+\{{#lf-form rules=rules as |validateFunction|}}
+  \{{lf-input
+    name="foo"
+    property=model.foo
+    errorMessagesComponent="my-errors-component"
+    validate=validateFunction
+  }}
+{{/code-sample}}
+
+<p>Our <code>my-errors-component</code> should accept an <code>errors</code> attribute.</p>
+
+<h2>Overwrite Error and Label Components Globally</h2>
+
+<p>If you decide that you want to use custom components to do the job of displaying labels and error messages you have to extend the <code>lf-input-wrapper</code> component in a following way:</p>
+
+{{#code-sample lang="js"}}
+// components/lf-input-wrapper.js
+import LFInputWrapper from 'ember-legit-forms/components/lf-input-wrapper';
+
+function fallBack(fallback) {
+  return computed({
+    get() { return fallback; },
+    set(_, v) { return v === undefined ? fallback : v; }
+  });
+}
+
+export default LFInputWrapper.extend({
+  labelComponent: fallBack('my-own-label-component'),
+  errorMessagesComponent: fallBack('my-own-errors-component'),
+});
+{{/code-sample}}
+
+{{docs-subnavigation
+  nextRoute="validators.representing-validators"
+  prevRoute="components-reference"
+  version="v2-0-0"
+}}
+
+<h2>Customize input classes</h2>
+
+<p>
+  While you can provide <code>class</code> attribute to any of the components, it'll only affect the wrapper. In order to modify the class of the input, pass in the <code>inputClass</code> attribute:
+</p>
+
+{{#code-sample lang="htmlbars"}}
+\{{lf-input
+  name="Name"
+  inputClass="my-own-class"
+  validate=v
+}}
+{{/code-sample}}
+
+<p>
+  This will overwrite the default <code>form-control</code> class with <code>my-own-class</code>.
+</p>
+
+<h2>Customizing classes for error and success validation messages</h2>
+
+<p>
+  In order to customize classes for both error nad succes validation messages you can supply the <code>errorClass</code> and <code>successClass</code>.
+</p>
+
+{{#code-sample lang="htmlbars"}}
+\{{lf-input
+  name="Name"
+  errorClass="new-error-class"
+  successClass="new-success-class"
+  validate=v
+}}
+{{/code-sample}}
+
+{{docs-subnavigation
+  prevRoute="components-reference"
+  nextRoute="showing-external-errors"
+  version="v2-2-0"
+}}

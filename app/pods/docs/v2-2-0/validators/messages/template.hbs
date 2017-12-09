@@ -1,0 +1,41 @@
+<h1 class="docs__title">Validation Messages</h1>
+
+<p>This addon provides validation messages by default - you can however customize those by either overwriting them or using i18n.</p>
+
+<h2>Overwriting Messages</h2>
+
+<p>If you want to overwrite message for a given rule you can do so using Verbose Object Representation, e.g.:</p>
+
+{{#code-sample lang="js"}}
+rules: {
+  password: {
+    // displays 'You must provide password' instead of
+    // the default 'can't be blank' message
+    required: { check: true, message: 'You must provide password' }
+  }
+}
+{{/code-sample}}
+
+<h2>i18n</h2>
+
+<p>
+  If you want to customize messages for predefined rules like required you have to install <a href="https://github.com/jamesarosen/ember-i18n" target="_blank">ember-i18n</a>.
+  You can then define your own messages in <code>locales/[locale]/translations.js</code> in <code>validation</code> key, for example:
+</p>
+{{#code-sample lang="js"}}
+/* locales/en/translations.js */
+
+export default {
+  validation: {
+    required: 'This field is required.'
+  }
+}
+{{/code-sample}}
+
+<p>To check what translation key does a particular rule use, see {{link-to "Validators Reference" "docs.v2-0-0.validators-reference"}}.</p>
+
+{{docs-subnavigation
+  nextRoute="validators.shared-validations"
+  prevRoute="validators.representing-validators"
+  version="v2-2-0"
+}}

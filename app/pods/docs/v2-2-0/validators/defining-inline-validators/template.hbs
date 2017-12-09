@@ -1,0 +1,105 @@
+<h1 class="docs__title">Defining Inline Validators</h1>
+
+<h2>Validator Object</h2>
+
+<p>This object is passed into each custom and inline validator in addition to value. It exposes following methods:</p>
+
+<h3><code>get(arguments)</code></h3>
+
+<p>
+  Returns an array of arguments passed to the rule (anything in the parentheses after rule name or passed as a value after rule name).
+  For example for a following rules:
+</p>
+
+{{#code-sample lang="js"}}
+firstName: 'between(5,6)'
+{{/code-sample}}
+
+{{#code-sample lang="js"}}
+firstName: [5,6]
+{{/code-sample}}
+
+{{#code-sample lang="js"}}
+firstName: { check: [5,6] }
+{{/code-sample}}
+
+<p><code>arguments</code> would be an array <code>[5,6]</code>.</p>
+
+<h3><code>get(field:field_name)</code></h3>
+
+<p>
+  Returns value of a field with name equal to <code>field_name</code>. Note that the <code>field_name</code> corresponds to the key name in the rules hash.
+  So let's say you want to fetch the value of a field <code>firstName</code> in rules for field <code>lastName</code>.
+  The field <code>lastName</code> should only be valid if the field <code>firstName</code> is equal to foo. We can do it like so:
+</p>
+{{#code-sample lang="js"}}
+// some-component/component.js
+import Ember from 'ember';
+const { Component } = Ember;
+
+export default Component.extend({
+  rules: {
+    firstName: 'required',
+    lastName: function(value, validator) {
+      if (!validator.get('field:firstName') === 'foo') {
+        return 'First name must be equal foo!';
+      }
+    }
+  }
+})
+{{/code-sample}}
+
+<h3><code>get(data:key)</code></h3>
+
+<p>
+  Returns value of a given key of <code>data</code> hash. You can pass it to <code>lf-form</code> component as an attribute.
+  Let's say we want a field phone to become optional if an user checks a checkbox I don't have a phone. We can do it like so:
+</p>
+{{#code-sample lang="js"}}
+
+\{{!-- some-component/template.hbs --}}
+
+\{{#lf-form rules=rules data=data as |validate|}}
+  \{{lf-input
+    name="phone"
+    validate=validate
+  }}
+\{{/lf-form}}
+{{/code-sample}}
+{{#code-sample lang="js"}}
+{{!-- code for checkbox goes here --}}
+// some-component/component.js
+
+import Ember from 'ember';
+const { Component, computed, isNone } = Ember;
+
+export default Component.extend({
+  // is set to false after clicking on
+  // checkbox "I don't have a phone"
+  userHasPhone: true,
+  // this hash gets recalculated each time user checks/unchecks
+  // the checkbox
+  data: computed('userHasPhone', function() {
+    const userHasPhone = this.get('userHasPhone');
+    return { userHasPhone };
+  }),
+  rules: {
+    phone(value, validator) {
+      // we first get the value from the data hash
+      const userHasPhone = validator.get('data:userHasPhone');
+      // we check if field is filled in and
+      // if the checkbox was checked
+      if (isNone(value) && userHasPhone) {
+        return 'required';
+      }
+    }
+  },
+
+  // code for handling checkbox click goes here
+})
+{{/code-sample}}
+{{docs-subnavigation
+  prevRoute="validators.creating-custom-validators"
+  nextRoute="validators-reference"
+  version="v2-2-0"
+}}

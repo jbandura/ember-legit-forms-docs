@@ -1,0 +1,20 @@
+{{#lf-form
+  changeset=changeset
+  onSubmit=(action "onSubmit" changeset)
+  as |v isValid|
+}}
+  {{lf-input
+    name="firstName"
+    label="First Name"
+    on-update=(action (mut changeset.firstName))
+    validate=v
+  }}
+
+  {{lf-input
+    name="lastName"
+    label="Last Name"
+    on-update=(action (mut changeset.lastName))
+    validate=v
+  }}
+  <button class="btn btn-primary" disabled={{not isValid}}>Submit</button>
+{{/lf-form}}
